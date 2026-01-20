@@ -1328,4 +1328,4 @@ async function getApi() {
   }
 }
 
-initApp();
+getApi();
