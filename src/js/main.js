@@ -14,8 +14,6 @@ const ingredientsList = document.getElementById("ingredientsList");
 const instructionsList = document.getElementById("instructionsList");
 const logMealModalBg = document.getElementById("log-meal-modal-Bg");
 const loadingSpiner = `<div class="flex items-center justify-center py-12"><div class="animate-spin rounded-full h-12 w-12 border-b-2 border-emerald-600"></div></div>`;
-/* =================================================== */
-
 /* =======================Product Scanner============================ */
 const productScanner = document.getElementById("productScanner");
 const productSection = document.getElementById("products-section");
@@ -27,15 +25,10 @@ const lookupBarcodeBtn = document.getElementById("lookup-barcode-btn");
 const barcodeInput = document.getElementById("barcode-input");
 const productDetailModal = document.getElementById("product-detail-modal");
 const productDetailModalContent = document.getElementById("all-detail-product-content");
-const nutritionGradeBtn = document.querySelectorAll(".nutri-score-filter");
-/* =================================================== */
-
 /* =======================Food Log============================ */
 const foodLog = document.getElementById("foodLog");
 const foodSection = document.getElementById("foodlog-section");
 const loggedItemsList = document.getElementById("logged-items-list");
-/* =================================================== */
-
 /* =======================SideBar & Navigation============================ */
 listViewBtn.addEventListener("click", function () {
   listViewBtn.classList.add("bg-white", "rounded-md", "shadow-sm");
@@ -250,10 +243,10 @@ async function categoriesByMeal() {
             break;
         }
         box += `
-                    <div class="category-card ${mealsColors} bg-gradient-to-br  rounded-xl p-3 border hover:shadow-md cursor-pointer transition-all group" data-category="${categoryMeal.name}">
-                        <div class="flex items-center gap-2.5">
-                            <div class="text-white w-9 h-9 bg-gradient-to-br ${iconColor} rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform shadow-sm">
-                                <i class="fa-solid ${iconMelas}"></i>
+           <div class="category-card ${mealsColors} bg-gradient-to-br  rounded-xl p-3 border hover:shadow-md cursor-pointer transition-all group" data-category="${categoryMeal.name}">
+                <div class="flex items-center gap-2.5">
+                   <div class="text-white w-9 h-9 bg-gradient-to-br ${iconColor} rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform shadow-sm">
+                         <i class="fa-solid ${iconMelas}"></i>
                             </div>
                             <div>
                                 <h3 class="text-sm font-bold text-gray-900">${categoryMeal.name}</h3>
@@ -310,13 +303,13 @@ async function allRecipes(indexDataCategoryMeal, indexDataCategoryArea, searchVa
         let categoryRecipes = datacRecipes.results[i];
         recipesCount.innerText = `Showing ${i + 1} recipes`;
         box += `
-                    <div class="recipe-card bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-all cursor-pointer group" data-meal-id="${categoryRecipes.id}" data-index="${i}">
-                        <div class="relative h-48 overflow-hidden">
-                            <img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" src="${categoryRecipes.thumbnail}" alt="${categoryRecipes.name}" loading="lazy" />
-                            <div class="absolute bottom-3 left-3 flex gap-2">
-                                <span class="px-2 py-1 bg-white/90 backdrop-blur-sm text-xs font-semibold rounded-full text-gray-700">${categoryRecipes.category}</span>
-                                <span class="px-2 py-1 bg-emerald-500 text-xs font-semibold rounded-full text-white">${categoryRecipes.area}</span>
-                            </div>
+          <div class="recipe-card bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-all cursor-pointer group" data-meal-id="${categoryRecipes.id}" data-index="${i}">
+              <div class="relative h-48 overflow-hidden">
+            <img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" src="${categoryRecipes.thumbnail}" alt="${categoryRecipes.name}" loading="lazy" />
+                <div class="absolute bottom-3 left-3 flex gap-2">
+                   <span class="px-2 py-1 bg-white/90 backdrop-blur-sm text-xs font-semibold rounded-full text-gray-700">${categoryRecipes.category}</span>
+                  <span class="px-2 py-1 bg-emerald-500 text-xs font-semibold rounded-full text-white">${categoryRecipes.area}</span>
+                      </div>
                         </div>
                         <div class="p-4">
                             <h3 class="text-base font-bold text-gray-900 mb-1 group-hover:text-emerald-600 transition-colors line-clamp-1">${categoryRecipes.name}</h3>
@@ -339,10 +332,8 @@ async function allRecipes(indexDataCategoryMeal, indexDataCategoryArea, searchVa
           let currentNutrition = null;
           mainDetails.classList.remove("hidden");
           mealsRecipesContent.classList.add("hidden");
-
           let nutritionDataId = datacRecipes.results[index].id;
           getNutritionData(nutritionDataId);
-
           let videoUrl = datacRecipes.results[index].youtube.replace("watch?v=", "embed/");
 
           mainDetails.innerHTML = `
@@ -657,7 +648,7 @@ searchProductBtn.addEventListener("click", function () {
 });
 
 lookupBarcodeBtn.addEventListener("click", function () {
-  let productBarcodeValue = barcodeInput.value;
+  let productBarcodeValue = barcodeInput.value.trim();
   barcodeProductResults(productBarcodeValue);
 });
 /* =================================================== */
@@ -751,12 +742,12 @@ async function barcodeProductResults(productBarcodeValue) {
               }
 
               productDetailModalContent.innerHTML = `
-                                <div class="flex items-start gap-6 mb-6">
-                                    <div class="w-32 h-32 bg-gray-100 rounded-xl flex items-center justify-center overflow-hidden flex-shrink-0">
-                                        <img src="${dataProductProductResults.result.image}" alt="${dataProductProductResults.result.name}" class="w-full h-full object-contain">
-                                    </div>
-                                    <div class="flex-1">
-                                        <p class="text-sm text-emerald-600 font-semibold mb-1">${dataProductProductResults.result.brand}</p>
+                   <div class="flex items-start gap-6 mb-6">
+                       <div class="w-32 h-32 bg-gray-100 rounded-xl flex items-center justify-center overflow-hidden flex-shrink-0">
+                          <img src="${dataProductProductResults.result.image}" alt="${dataProductProductResults.result.name}" class="w-full h-full object-contain">
+                              </div>
+                                <div class="flex-1">
+                                   <p class="text-sm text-emerald-600 font-semibold mb-1">${dataProductProductResults.result.brand}</p>
                                         <h2 class="text-2xl font-bold text-gray-900 mb-2">${dataProductProductResults.result.name}</h2>
                                         <p class="text-sm text-gray-500 mb-3">33 cl</p>
                                         <div class="flex items-center gap-3">
@@ -845,6 +836,7 @@ async function barcodeProductResults(productBarcodeValue) {
 /* =================================================== */
 
 /* ========================Filter by Nutri Score=========================== */
+const nutritionGradeBtn = document.querySelectorAll(".nutri-score-filter");
 function resetActiveStyles() {
   nutritionGradeBtn.forEach(function (btn) {
     btn.classList.remove("ring-2", "ring-gray-900");
@@ -873,7 +865,7 @@ async function categoriesProductScanner(indexDataCategoryProudct, indexNutrition
 
       for (let productScanner of dataProductScanner.results) {
         let nutriScore = productScanner.nutritionGrade ? productScanner.nutritionGrade : "UNKNOWN";
-        if (indexNutritionGrade !== '' && nutriScore !== indexNutritionGrade) { continue; }
+        if (indexNutritionGrade !== '' && nutriScore !== indexNutritionGrade) { continue }
         let novaGroupNumber = productScanner.novaGroup;
         let colorNutriScore = "";
         let colorNovaGroup = "";
@@ -1316,7 +1308,7 @@ productDetailModalContent.addEventListener('click', function (e) {
 });
 /* =================================================== */
 
-async function initApp() {
+async function getApi() {
   const loader = document.getElementById("app-loading-overlay");
   try {
     await Promise.all([
